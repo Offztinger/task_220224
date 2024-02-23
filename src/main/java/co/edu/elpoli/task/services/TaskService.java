@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface TaskService {
     List<Task> findAllByStatus(TaskStatus status);
-    Task markTaskAsFinished(@Param("task_id") Long TaskId);
+    Task markTaskAsFinished(@Param("task_id") Long taskId);
     List<Task> findAll();
     Task create(TaskDTO task);
     Task deleteTaskById(Long taskId);
