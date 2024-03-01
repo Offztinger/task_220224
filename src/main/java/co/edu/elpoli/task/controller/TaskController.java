@@ -14,7 +14,7 @@ import java.util.List;
 public class TaskController {
     private final TaskService taskService;
 
-    @GetMapping
+    @GetMapping()
     public List<Task> findAll(){
         return taskService.findAll();
     }

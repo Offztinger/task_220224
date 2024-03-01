@@ -24,7 +24,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> findAll() {
-        return null;
+        return taskRepository.findAll();
     }
     @Override
     public Task create(TaskDTO task) {
