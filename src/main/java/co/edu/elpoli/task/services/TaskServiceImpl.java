@@ -1,5 +1,6 @@
 package co.edu.elpoli.task.services;
 
+import co.edu.elpoli.task.mapper.TaskConversion;
 import co.edu.elpoli.task.persistence.entity.Task;
 import co.edu.elpoli.task.persistence.entity.TaskStatus;
 import co.edu.elpoli.task.persistence.repository.TaskRepository;
@@ -15,6 +16,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class TaskServiceImpl implements TaskService {
     private final TaskRepository taskRepository;
+    private final TaskConversion taskConversion;
     @Override
     public List<Task> findAllByStatus(TaskStatus status) {
         return taskRepository.findAllByStatus(status);
@@ -26,7 +28,7 @@ public class TaskServiceImpl implements TaskService {
     }
     @Override
     public Task create(TaskDTO task) {
-        return taskRepository.save();
+        return taskRepository.save(taskConversion.mapper(task));
     }
     @Override
     public Task markTaskAsFinished(Long taskId) {
