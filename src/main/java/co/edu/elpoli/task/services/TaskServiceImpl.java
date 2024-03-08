@@ -6,8 +6,8 @@ import co.edu.elpoli.task.persistence.entity.TaskStatus;
 import co.edu.elpoli.task.persistence.repository.TaskRepository;
 import co.edu.elpoli.task.services.dto.TaskDTO;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -30,6 +30,7 @@ public class TaskServiceImpl implements TaskService {
     public Task create(TaskDTO task) {
         return taskRepository.save(taskConversion.mapper(task));
     }
+    @Transactional
     @Override
     public Task markTaskAsFinished(Long taskId) {
         Optional<Task> task = taskRepository.findById(taskId);
@@ -37,6 +38,7 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.markTaskAsFinished(taskId);
         return task.orElse(null);
     }
+    @Transactional
     @Override
     public Task deleteTaskById(Long taskId) {
         Optional<Task> task = taskRepository.findById(taskId);
